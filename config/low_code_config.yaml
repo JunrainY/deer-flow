@@ -1,0 +1,161 @@
+# 低代码平台智能体系统配置
+# 基于deer-flow架构的低代码开发平台配置
+
+# 低代码平台连接配置
+LOW_CODE_PLATFORM:
+  # 平台基础信息
+  name: "YunCheng Low Code Platform"
+  base_url: "https://yunchengxc.yuque.com/staff-kxgs7i/public"
+  login_url: "${LOW_CODE_PLATFORM_URL}/login"
+  dashboard_url: "${LOW_CODE_PLATFORM_URL}/dashboard"
+  
+  # 认证配置
+  authentication:
+    type: "form_based"  # form_based, oauth2, api_key
+    username_field: "username"
+    password_field: "password"
+    login_button_selector: "[data-testid='login-button']"
+    
+  # 会话管理
+  session:
+    timeout: 1800  # 30分钟会话超时
+    keep_alive_interval: 300  # 5分钟保活间隔
+    max_retry_attempts: 3
+    
+  # 功能模块配置
+  modules:
+    data_modeling:
+      enabled: true
+      entry_selector: "[data-module='data-modeling']"
+      create_button: "[data-action='create-model']"
+      
+    form_design:
+      enabled: true
+      entry_selector: "[data-module='form-design']"
+      designer_iframe: "#form-designer-iframe"
+      
+    page_design:
+      enabled: true
+      entry_selector: "[data-module='page-design']"
+      canvas_selector: ".page-canvas"
+      
+    workflow_design:
+      enabled: true
+      entry_selector: "[data-module='workflow']"
+      flow_canvas: ".workflow-canvas"
+      
+    report_design:
+      enabled: true
+      entry_selector: "[data-module='reports']"
+      chart_builder: ".chart-builder"
+      
+    dictionary_management:
+      enabled: true
+      entry_selector: "[data-module='dictionary']"
+      add_entry_button: "[data-action='add-dict-entry']"
+
+# 智能体协作配置
+AGENT_COLLABORATION:
+  # 主要智能体配置
+  low_code_developer:
+    max_operations_per_session: 50
+    operation_timeout: 30  # 秒
+    retry_failed_operations: true
+    screenshot_on_error: true
+    
+  function_validator:
+    validation_timeout: 60  # 秒
+    test_scenarios:
+      - "basic_functionality"
+      - "edge_cases"
+      - "error_handling"
+      - "performance"
+    
+  knowledge_manager:
+    similarity_threshold: 0.8
+    max_stored_solutions: 1000
+    auto_cleanup_old_solutions: true
+    cleanup_threshold_days: 90
+    
+  visual_analyzer:
+    confidence_threshold: 0.7
+    max_analysis_time: 15  # 秒
+    element_detection_types:
+      - "button"
+      - "input"
+      - "select"
+      - "textarea"
+      - "checkbox"
+      - "radio"
+      - "link"
+
+# 奖励机制配置
+REWARD_SYSTEM:
+  # 评估标准
+  evaluation_criteria:
+    functionality_score_weight: 0.4
+    code_quality_weight: 0.2
+    performance_weight: 0.2
+    user_satisfaction_weight: 0.2
+    
+  # 奖励阈值
+  thresholds:
+    acceptance_score: 0.7
+    rejection_score: 0.3
+    auto_accept_score: 0.9
+    
+  # 版本控制
+  version_control:
+    max_versions_per_solution: 10
+    auto_backup_before_changes: true
+    rollback_timeout: 300  # 5分钟内可回滚
+
+# 调试和监控配置
+DEBUG_MONITORING:
+  # 日志级别
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  
+  # 详细日志记录
+  detailed_logging:
+    browser_actions: true
+    api_calls: true
+    agent_decisions: true
+    performance_metrics: true
+    
+  # 性能监控
+  performance_monitoring:
+    enabled: true
+    metrics_collection_interval: 30  # 秒
+    alert_thresholds:
+      response_time_ms: 5000
+      memory_usage_mb: 1024
+      cpu_usage_percent: 80
+      
+  # 错误处理
+  error_handling:
+    auto_retry_on_timeout: true
+    max_retry_attempts: 3
+    escalate_after_failures: 5
+    
+# 安全配置
+SECURITY:
+  # 操作限制
+  operation_limits:
+    max_concurrent_sessions: 5
+    max_operations_per_minute: 30
+    blacklisted_operations:
+      - "delete_all_data"
+      - "modify_system_settings"
+      
+  # 数据保护
+  data_protection:
+    encrypt_sensitive_data: true
+    mask_credentials_in_logs: true
+    secure_screenshot_storage: true
+    
+  # 访问控制
+  access_control:
+    require_user_approval_for:
+      - "data_deletion"
+      - "system_configuration"
+      - "user_management"
